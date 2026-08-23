@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Ana Sayfa (Sakarya El Emeği Doğal Rattan Ürünleri & Vitrin) -->
+    <url>
+        <loc>https://huzuratolyem.com/</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://huzuratolyem.com/foto_1.png</image:loc>
+            <image:title>Sakarya El Yapımı Rattan Saç Tokası</image:title>
+            <image:caption>Doğal el emeği rattan toka ve saç aksesuarları</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://huzuratolyem.com/foto_4.png</image:loc>
+            <image:title>20 cm El Yapımı Rattan Duvar Süsü Sakarya</image:title>
+            <image:caption>Sakarya'dan doğal rattan el örgüsü çiçek duvar dekoru</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://huzuratolyem.com/foto_5.png</image:loc>
+            <image:title>25 cm Doğal Rattan Duvar Süsü</image:title>
+            <image:caption>El emeği sıcak ev dekorasyonu rattan süsler</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://huzuratolyem.com/foto_6.png</image:loc>
+            <image:title>38 cm Büyük Boy Rattan Duvar Dekoru</image:title>
+            <image:caption>Sakarya el yapımı özel tasarım rattan duvar süsü</image:caption>
+        </image:image>
+    </url>
+
+    <!-- Biz Kimiz Sayfası (Sakarya Rattan Atölyesi, Hikayemiz & El İşçiliği) -->
+    <url>
+        <loc>https://huzuratolyem.com/biz-kimiz.html</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://huzuratolyem.com/foto_1.png</image:loc>
+            <image:title>Huzur Atölyem Sakarya Rattan Hikayesi</image:title>
+            <image:caption>Sakarya ev ortamında tamamen el emeği üretilen doğal rattan tasarımlar</image:caption>
+        </image:image>
+    </url>
+
+</urlset>
