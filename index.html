@@ -213,7 +213,7 @@
             <div class="divider"></div>
         </div>
 
-        <div class="collection-grid">
+        <div class="collection-grid" id="collection-grid">
             
             <!-- Product 1: Toka (Starting Item) -->
             <div class="product-card reveal stagger-1">
@@ -387,10 +387,137 @@
         </div>
 
         <div class="footer-bottom">
-            © 2026 Huzur Atölyem (Sakarya). Tüm hakları saklıdır. Sevgiyle el yapımı.
+            <span>© 2026 Huzur Atölyem (Sakarya). Tüm hakları saklıdır. Sevgiyle el yapımı.</span>
+            <span class="footer-dot">•</span>
+            <button type="button" class="admin-trigger-btn" id="open-admin-auth">Yönetici</button>
         </div>
     </footer>
     </div><!-- /.content-particle-wrapper -->
+
+    <!-- =========================================================================
+         Serverless Admin System Modals (Password: feyzam9498)
+         ========================================================================= -->
+    <!-- 1. Password Auth Modal -->
+    <div id="admin-auth-modal" class="admin-modal-overlay">
+        <div class="admin-auth-card">
+            <div class="admin-modal-header">
+                <div class="admin-header-title">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <h3>Yönetici Girişi</h3>
+                </div>
+                <button type="button" class="admin-modal-close" id="close-admin-auth" aria-label="Kapat">&times;</button>
+            </div>
+            <p class="admin-modal-desc">Ürün ekleme, silme ve düzenleme paneline erişmek için lütfen yönetici şifrenizi girin.</p>
+            <form id="admin-auth-form" onsubmit="return false;">
+                <div class="admin-form-group">
+                    <input type="password" id="admin-password-input" class="admin-input" placeholder="Şifrenizi girin..." autocomplete="current-password" required>
+                </div>
+                <div id="admin-auth-error" class="admin-error-msg">Hatalı şifre! Lütfen tekrar deneyin.</div>
+                <button type="submit" id="submit-admin-auth" class="btn-admin-submit">Giriş Yap</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Admin Management Panel Modal -->
+    <div id="admin-panel-modal" class="admin-modal-overlay">
+        <div class="admin-panel-card">
+            <div class="admin-panel-header">
+                <div class="admin-panel-title-wrap">
+                    <div class="panel-brand">
+                        <img src="favicon.png" alt="Logo" class="panel-logo">
+                        <h2>Ürün Yönetim Paneli</h2>
+                    </div>
+                    <span class="admin-badge-active">Yönetici Modu</span>
+                </div>
+                <div class="admin-panel-actions">
+                    <button type="button" class="btn-admin-add" id="btn-open-add-product">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        Yeni Ürün Ekle
+                    </button>
+                    <button type="button" class="admin-modal-close" id="close-admin-panel" aria-label="Kapat">&times;</button>
+                </div>
+            </div>
+
+            <div class="admin-panel-body">
+                <!-- Product Form (Add / Edit Drawer) -->
+                <div id="admin-product-form-container" class="admin-form-drawer hidden">
+                    <div class="drawer-header">
+                        <h3 id="admin-form-title">Yeni Ürün Ekle</h3>
+                        <button type="button" class="btn-cancel-form" id="btn-close-form">İptal</button>
+                    </div>
+                    <form id="admin-product-form" onsubmit="return false;">
+                        <input type="hidden" id="product-edit-id">
+                        
+                        <div class="admin-form-grid">
+                            <div class="admin-form-group">
+                                <label for="prod-title">Ürün Başlığı *</label>
+                                <input type="text" id="prod-title" class="admin-input" placeholder="Örn: 25 cm Rattan Duvar Süsü" required>
+                            </div>
+                            
+                            <div class="admin-form-group">
+                                <label for="prod-price">Fiyat / Fiyat Metni *</label>
+                                <input type="text" id="prod-price" class="admin-input" placeholder="Örn: 200 TL veya Fiyat Sorunuz" required>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label for="prod-badge">Etiket / Rozet (Opsiyonel)</label>
+                                <input type="text" id="prod-badge" class="admin-input" placeholder="Örn: Yeni Ürün, Çok Satan, Popüler">
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label for="prod-desc">Kısa Açıklama *</label>
+                                <input type="text" id="prod-desc" class="admin-input" placeholder="Örn: Salon ve yatak odalarına doğal ve sıcak bir dokunuş." required>
+                            </div>
+
+                            <div class="admin-form-group full-width">
+                                <label>Ürün Görseli *</label>
+                                <div class="image-upload-wrapper">
+                                    <div class="file-upload-box">
+                                        <input type="file" id="prod-image-file" accept="image/*" class="admin-file-input">
+                                        <label for="prod-image-file" class="file-upload-label">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                            Cihazdan Fotoğraf Yükle (Galeri / Dosya)
+                                        </label>
+                                    </div>
+                                    <div class="or-separator"><span>veya hazır ürün görsellerinden seçin:</span></div>
+                                    <div class="preset-images-list" id="preset-images-list">
+                                        <img src="./foto_1.png" class="preset-thumb active" data-src="./foto_1.png" alt="Toka">
+                                        <img src="./foto_4.png" class="preset-thumb" data-src="./foto_4.png" alt="20cm">
+                                        <img src="./foto_2.png" class="preset-thumb" data-src="./foto_2.png" alt="Rölyef">
+                                        <img src="./foto_5.png" class="preset-thumb" data-src="./foto_5.png" alt="25cm">
+                                        <img src="./foto_3.png" class="preset-thumb" data-src="./foto_3.png" alt="Vav">
+                                        <img src="./foto_6.png" class="preset-thumb" data-src="./foto_6.png" alt="38cm">
+                                    </div>
+                                    <input type="hidden" id="prod-image-src" value="./foto_1.png">
+                                    <div class="image-preview-wrap">
+                                        <span class="preview-label">Seçili Görsel Önizlemesi:</span>
+                                        <div class="image-preview-box">
+                                            <img id="image-preview" src="./foto_1.png" alt="Önizleme">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer-actions">
+                            <button type="submit" class="btn-admin-save" id="btn-save-product">Kaydet ve Yayınla</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Product List Section -->
+                <div class="admin-product-list-wrap">
+                    <div class="admin-list-header">
+                        <h4>Mevcut Vitrin Ürünleri (<span id="admin-product-count">6</span>)</h4>
+                        <button type="button" class="btn-reset-default" id="btn-reset-products" title="Orijinal 6 ürüne geri döndür">Varsayılana Sıfırla</button>
+                    </div>
+                    <div id="admin-products-table-body" class="admin-products-cards-grid">
+                        <!-- Dynamic admin product cards rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Floating Mobile & Quick Action Buttons (WhatsApp + Call) -->
     <div class="floating-quick-actions">
