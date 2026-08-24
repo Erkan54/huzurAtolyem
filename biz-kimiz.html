@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biz Kimiz? | Doğal Rattan Atölyemiz - Huzur Atölyem</title>
-    <meta name="description" content="Sakarya'da ev ortamında %100 doğal rattan el emeği ile örülen rattan duvar süsleri, tokalar ve dekoratif rattan tasarımları. Huzur Atölyem'in hikayesi.">
-    <meta name="keywords" content="rattan, doğal rattan, sakarya rattan, el yapımı rattan, rattan duvar süsü, rattan toka, rattan atölyesi, huzur atölyem">
+    <title>Biz Kimiz? | Doğal Rattan & Bohem Duvar Süsü Atölyemiz - Huzur Atölyem</title>
+    <meta name="description" content="Sakarya'da ev ortamında %100 doğal rattan el emeği ile örülen bohem rattan duvar süsleri, saç aksesuarları ve el yapımı süsler. Huzur Atölyem'in hikayesi.">
+    <meta name="keywords" content="rattan, doğal rattan, sakarya rattan, el yapımı rattan, rattan duvar süsü, rattan toka, rattan aksesuar, bohem süs, bohem dekorasyon, huzur atölyem">
     <meta name="author" content="Huzur Atölyem">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph SEO -->
-    <meta property="og:title" content="Biz Kimiz? | Doğal Rattan Atölyemiz - Huzur Atölyem">
-    <meta property="og:description" content="Sakarya'dan evlere uzanan %100 doğal el emeği rattan yolculuğumuz ve tasarımlarımız.">
-    <meta property="og:image" content="https://huzuratolyem.com/foto_1.png">
+    <meta property="og:title" content="Biz Kimiz? | Doğal Rattan & Bohem Atölyemiz - Huzur Atölyem">
+    <meta property="og:description" content="Sakarya'dan evlere uzanan %100 doğal el emeği rattan ve bohem duvar süsü yolculuğumuz.">
+    <meta property="og:image" content="https://huzuratolyem.com/foto_4.png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="tr_TR">
 
@@ -23,16 +23,16 @@
       "@type": "AboutPage",
       "mainEntity": {
         "@type": "LocalBusiness",
-        "name": "Huzur Atölyem",
-        "image": "https://huzuratolyem.com/foto_1.png",
+        "name": "Huzur Atölyem - Doğal Rattan & Bohem Tasarımlar",
+        "image": "https://huzuratolyem.com/foto_4.png",
         "telephone": "+905337009454",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Sakarya",
           "addressCountry": "TR"
         },
-        "description": "Sakarya'dan %100 doğal, el yapımı rattan duvar süsü, saç tokası ve özel tasarım dekorasyon ürünleri.",
-        "priceRange": "150 TL - 350 TL"
+        "description": "Sakarya'dan %100 doğal, el yapımı bohem rattan duvar süsü, saç aksesuarları ve özel tasarım dekorasyon ürünleri.",
+        "priceRange": "120 TL - 350 TL"
       }
     }
     </script>
@@ -43,6 +43,10 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
     <!-- Preloader Sadece İlk Girişte ve Sayfa Yenilemede (F5) Çalışsın Scripti -->
     <script>
@@ -82,8 +86,10 @@
         
         <div class="nav-links">
             <a href="index.html">Ana Sayfa</a>
+            <a href="urunler.html">Koleksiyon</a>
             <a href="index.html#vitrin">Vitrin</a>
             <a href="biz-kimiz.html" class="active-nav">Biz Kimiz?</a>
+            <a href="index.html#sss">SSS</a>
             <a href="#iletisim" class="btn-contact">İletişime Geç</a>
         </div>
 
@@ -106,7 +112,6 @@
 
     <!-- Content Particle Wrapper: Particles start below header -->
     <div class="content-particle-wrapper">
-        <!-- Background Floating Rattan Canvas Animation -->
         <canvas id="rattan-particles" class="rattan-canvas"></canvas>
 
         <!-- Detailed About Content Section -->
@@ -117,16 +122,16 @@
             <div class="story-grid">
                 <div class="story-text">
                     <span class="story-tag">Sakarya'dan İlhamla</span>
-                    <h2>Doğanın En Saf Haliyle Evinize Ulaşan Yolculuk</h2>
+                    <h2>Doğanın En Saf Haliyle Evinize Ulaşan Bohem Yolculuk</h2>
                     <p>
-                        <strong>Huzur Atölyem</strong>, Sakarya'da doğallığa, ahşabın sıcaklığına ve el işçiliğinin benzersiz samimiyetine duyulan derin tutkuyla filizlendi. Seri üretimin ruhsuz kalıplarından uzak, her biri tek tek elle örülen dekoratif parçalar hazırlıyoruz.
+                        <strong>Huzur Atölyem</strong>, Sakarya'da doğallığa, ahşabın sıcaklığına ve el işçiliğinin benzersiz samimiyetine duyulan derin tutkuyla filizlendi. Seri üretimin ruhsuz kalıplarından uzak, her biri tek tek elle örülen dekoratif bohem parçalar hazırlıyoruz.
                     </p>
                     <p>
-                        Uzak Doğu'nun birinci sınıf, esnek ve dayanıklı rattan liflerini geleneksel örme sanatıyla harmanlayarak duvar süslerine, zarif saç tokalarına ve el emeği tablolara dönüştürüyoruz.
+                        Uzak Doğu'nun birinci sınıf, esnek ve dayanıklı rattan liflerini geleneksel örme sanatıyla harmanlayarak bohem rattan duvar süslerine, zarif saç aksesuarlarına ve el emeği tablolara dönüştürüyoruz.
                     </p>
                 </div>
                 <div class="story-image-card">
-                    <img src="./foto_4.png" alt="20 cm Rattan Duvar Süsü Sakarya" loading="lazy">
+                    <img src="./foto_4.png" alt="20 cm Bohem Doğal Rattan Duvar Dekoru Sakarya" loading="lazy">
                     <div class="card-caption">20 cm Doğal Rattan Duvar Dekoru</div>
                 </div>
             </div>
@@ -136,17 +141,17 @@
         <section class="story-section reverse reveal">
             <div class="story-grid">
                 <div class="story-image-card">
-                    <img src="./foto_1.png" alt="El Yapımı Rattan Saç Tokası" loading="lazy">
-                    <div class="card-caption">Zarif Boncuk Detaylı Saç Tokası</div>
+                    <img src="./foto_1.png" alt="El Yapımı Rattan Saç Tokası ve Aksesuarı" loading="lazy">
+                    <div class="card-caption">Zarif Boncuk Detaylı Saç Aksesuarı</div>
                 </div>
                 <div class="story-text">
                     <span class="story-tag">Ustalık & Sabır</span>
                     <h2>Her Detayında Sevgi ve Özen Var</h2>
                     <p>
-                        Rattan lifleri ıslatılarak yumuşatılır, saatler süren hassas bir örgü sürecinden geçer. Çıtçıt tokalardan 38 cm dev duvar çiçeklerine kadar her ürünümüzün arkasında büyük bir emek ve huzur arayışı yatar.
+                        Rattan lifleri ıslatılarak yumuşatılır, saatler süren hassas bir örgü sürecinden geçer. Çıtçıt tokalardan 38 cm dev boy bohem duvar çiçeklerine kadar her ürünümüzün arkasında büyük bir emek ve huzur arayışı yatar.
                     </p>
                     <p>
-                        Kullandığımız tüm malzemeler çevre dostu, geri dönüştürülebilir ve yaşam alanlarınıza pozitif enerji katacak doğallıktadır.
+                        Kullandığımız tüm malzemeler çevre dostu, geri dönüştürülebilir ve yaşam alanlarınıza pozitif bohem enerji katacak doğallıktadır.
                     </p>
                 </div>
             </div>
@@ -182,7 +187,7 @@
             <h2>El Emeği Vitrinimizi İnceleyin</h2>
             <p>Sakarya'da sevgiyle hazırlanan 20cm, 25cm, 38cm duvar süslerimizi, tokalarımızı ve tablolarımızı keşfedin.</p>
             <div class="about-cta-btns">
-                <a href="index.html#vitrin" class="btn-primary-rattan">Vitrini İncele</a>
+                <a href="urunler.html" class="btn-primary-rattan">Tüm Koleksiyonu İncele</a>
                 <a href="https://wa.me/905337009454?text=Merhaba,%20Huzur%20Atölyem%20ürünleriniz%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-wa-gold">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
@@ -192,40 +197,38 @@
             </div>
         </section>
 
-    </main>
+        </main>
 
-    <!-- Footer -->
-    <footer id="iletisim">
-        <a href="index.html" class="logo">Huzur Atölyem</a>
-        <p>Sakarya el emeği doğal rattan tasarımlar. İletişim, özel sipariş ve bilgi için bize dilediğiniz zaman ulaşabilirsiniz.</p>
-        
-        <div class="footer-social">
-            <a href="https://wa.me/905337009454" target="_blank" aria-label="WhatsApp">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            </a>
-            <a href="tel:05337009454" aria-label="Telefon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </a>
-        </div>
+        <!-- Footer -->
+        <footer id="iletisim">
+            <a href="index.html" class="logo">Huzur Atölyem</a>
+            <p>Sakarya el emeği doğal rattan tasarımlar. İletişim, özel sipariş ve bilgi için bize dilediğiniz zaman ulaşabilirsiniz.</p>
+            
+            <div class="footer-social">
+                <a href="https://wa.me/905337009454" target="_blank" aria-label="WhatsApp">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                </a>
+                <a href="tel:05337009454" aria-label="Telefon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
+            </div>
 
-        <div class="footer-bottom">
-            <span>© 2026 Huzur Atölyem (Sakarya). Tüm hakları saklıdır. Sevgiyle el yapımı.</span>
-            <span class="footer-dot">•</span>
-            <a href="index.html#admin" class="admin-trigger-btn">Yönetici</a>
-        </div>
-    </footer>
+            <div class="footer-bottom">
+                <span>© 2026 Huzur Atölyem (Sakarya). Tüm hakları saklıdır. Sevgiyle el yapımı.</span>
+                <span class="footer-dot">•</span>
+                <a href="index.html#admin" class="admin-trigger-btn">Yönetici</a>
+            </div>
+        </footer>
     </div><!-- /.content-particle-wrapper -->
 
     <!-- Floating Mobile & Quick Action Buttons (WhatsApp + Call) -->
     <div class="floating-quick-actions">
-        <!-- Call Button -->
         <a href="tel:05337009454" class="quick-action-btn btn-call" aria-label="Hemen Arayın" title="Hemen Arayın: 0533 700 94 54">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             <span class="action-tooltip">Hemen Arayın</span>
         </a>
-        <!-- WhatsApp Button -->
         <a href="https://wa.me/905337009454?text=Merhaba,%20Huzur%20Atölyem%20rattan%20tasarımları%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="quick-action-btn btn-wp" aria-label="WhatsApp İle Yazın" title="WhatsApp Sipariş Hattı">
             <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
@@ -234,7 +237,7 @@
         </a>
     </div>
 
-    <!-- Core Scripts & Particle Animation -->
+    <!-- Core Scripts -->
     <script src="js/main.js"></script>
 </body>
 </html>

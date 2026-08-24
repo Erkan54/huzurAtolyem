@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Firestore Ürün Yükleme Aracı - Huzur Atölyem</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <style>
+        body {
+            background: #FDFBF7;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .import-card {
+            background: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(142, 115, 91, 0.12);
+            border: 1px solid rgba(212, 184, 149, 0.35);
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+        }
+        .import-logo {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            color: #5A4738;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            color: #8E735B;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .btn-upload-all {
+            background: #25D366;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-upload-all:hover {
+            background: #1EBE5D;
+            transform: translateY(-2px);
+        }
+        .log-box {
+            margin-top: 1.5rem;
+            background: #2A241F;
+            color: #D4B895;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: left;
+            font-family: monospace;
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+        .btn-back-home {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #8E735B;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="import-card">
+        <img src="favicon.png" alt="Huzur Atölyem" class="import-logo">
+        <h1>Firebase Firestore Veritabanı Yükleyici</h1>
+        <p>
+            Mevcut 6 orijinal rattan ve bohem ürününü Firebase Firestore bulut veritabanınıza (<strong>huzuratolyem-rattan</strong>) aktarmak için aşağıdaki butona tıklayın.
+        </p>
+
+        <button type="button" class="btn-upload-all" id="btnStartImport">
+            🚀 6 Orijinal Ürünü Firestore'a Yükle
+        </button>
+
+        <div id="logBox" class="log-box"></div>
+
+        <div>
+            <a href="index.html" class="btn-back-home">← Ana Sayfaya Dön</a>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHYAbpuIh6HJwnoZGRd52UJ1c0yVgPPa0",
+            authDomain: "huzuratolyem-rattan.firebaseapp.com",
+            projectId: "huzuratolyem-rattan",
+            storageBucket: "huzuratolyem-rattan.firebasestorage.app",
+            messagingSenderId: "1054362594241",
+            appId: "1:1054362594241:web:36163f1715ae72e14d9d40",
+            measurementId: "G-KRBH1J29X7"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const DEFAULT_PRODUCTS = [
+            {
+                id: 'prod-1',
+                title: 'El Yapımı Rattan Saç Tokası',
+                desc: 'Zarif boncuk detaylı, %100 doğal el yapımı saç aksesuarı.',
+                price: 'Fiyat Sorunuz',
+                category: 'aksesuar-toka',
+                categoryName: 'Rattan Aksesuar & Toka',
+                badge: 'Yeni Ürün',
+                badgeClass: 'new',
+                image: './foto_1.png',
+                alt: 'El Yapımı Rattan Saç Tokası ve Doğal Aksesuar Sakarya',
+                pageUrl: 'urun-rattan-sac-tokasi.html',
+                slug: 'urun-rattan-sac-tokasi',
+                active: true,
+                order: 1
+            },
+            {
+                id: 'prod-2',
+                title: '20 cm Rattan Duvar Süsü',
+                desc: 'Doğal el örgüsü, zarif çiçek formunda duvar dekoru.',
+                price: '150 TL',
+                category: 'duvar-susu',
+                categoryName: 'Rattan Duvar Süsü',
+                badge: 'Popüler',
+                badgeClass: 'populer',
+                image: './foto_4.png',
+                alt: '20 cm Bohem El Yapımı Rattan Duvar Süsü Sakarya',
+                pageUrl: 'urun-20-cm-rattan-duvar-susu.html',
+                slug: 'urun-20-cm-rattan-duvar-susu',
+                active: true,
+                order: 2
+            },
+            {
+                id: 'prod-3',
+                title: 'Özel Tasarım Rölyef Çerçeve',
+                desc: 'Mutfak ve yemek alanları için 3 boyutlu el işçiliği tablo.',
+                price: 'Fiyat Sorunuz',
+                category: 'tablo-sanat',
+                categoryName: 'Tablo & Sanat',
+                badge: 'Özel Çalışma',
+                badgeClass: 'ozel-calisma',
+                image: './foto_2.png',
+                alt: 'Özel Tasarım 3D Rölyef Tablo ve Çerçeve Sakarya',
+                pageUrl: 'urun-ozel-tasarim-rolyef-cerceve.html',
+                slug: 'urun-ozel-tasarim-rolyef-cerceve',
+                active: true,
+                order: 3
+            },
+            {
+                id: 'prod-4',
+                title: '25 cm Rattan Duvar Süsü',
+                desc: 'Salon ve yatak odalarına doğal ve sıcak bir dokunuş.',
+                price: '200 TL',
+                category: 'duvar-susu',
+                categoryName: 'Rattan Duvar Süsü',
+                badge: 'Çok Satan',
+                badgeClass: 'cok-satan',
+                image: './foto_5.png',
+                alt: '25 cm Bohem El Yapımı Rattan Duvar Süsü Sakarya',
+                pageUrl: 'urun-25-cm-rattan-duvar-susu.html',
+                slug: 'urun-25-cm-rattan-duvar-susu',
+                active: true,
+                order: 4
+            },
+            {
+                id: 'prod-5',
+                title: 'El Emeği Vav Hat Tablo',
+                desc: 'Geleneksel Vav motifi ve çiçek bezemeli çerçeveli eser.',
+                price: 'Fiyat Sorunuz',
+                category: 'tablo-sanat',
+                categoryName: 'Tablo & Sanat',
+                badge: 'El İşi Sanat',
+                badgeClass: 'el-isi',
+                image: './foto_3.png',
+                alt: 'El Emeği Vav Hat Sanatı Tablo Sakarya',
+                pageUrl: 'urun-el-emegi-vav-hat-tablo.html',
+                slug: 'urun-el-emegi-vav-hat-tablo',
+                active: true,
+                order: 5
+            },
+            {
+                id: 'prod-6',
+                title: '38 cm Rattan Duvar Süsü',
+                desc: 'Geniş duvarlar ve ana odak noktaları için dev boy zarafet.',
+                price: '350 TL',
+                category: 'duvar-susu',
+                categoryName: 'Rattan Duvar Süsü',
+                badge: 'Büyük Boy',
+                badgeClass: 'buyuk-boy',
+                image: './foto_6.png',
+                alt: '38 cm Büyük Boy Bohem Rattan Duvar Süsü Sakarya',
+                pageUrl: 'urun-38-cm-rattan-duvar-susu.html',
+                slug: 'urun-38-cm-rattan-duvar-susu',
+                active: true,
+                order: 6
+            }
+        ];
+
+        const logBox = document.getElementById('logBox');
+        const appendLog = (msg) => {
+            logBox.style.display = 'block';
+            logBox.innerHTML += `<div>> ${msg}</div>`;
+            logBox.scrollTop = logBox.scrollHeight;
+        };
+
+        document.getElementById('btnStartImport').addEventListener('click', async () => {
+            appendLog('Firestore bağlantısı başlatılıyor...');
+            try {
+                for (const item of DEFAULT_PRODUCTS) {
+                    await db.collection("products").doc(item.id).set({
+                        ...item,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    appendLog(`✓ Başarıyla yüklendi: ${item.title} (${item.id})`);
+                }
+                appendLog('🎉 Tebrikler! Tüm ürünler Firestore veritabanına kaydedildi!');
+            } catch (err) {
+                appendLog(`❌ Hata: ${err.message}`);
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>
