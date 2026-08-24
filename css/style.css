@@ -1991,9 +1991,8 @@ html.no-preloader .preloader {
     padding: 1.8rem 2rem;
     overflow-y: auto;
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    max-height: calc(90vh - 120px);
+    display: block;
 }
 
 /* Product Form Drawer */

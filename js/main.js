@@ -149,7 +149,7 @@ const DEFAULT_PRODUCTS = [
     }
 ];
 
-// Helper to read local products
+// Helper to read local products safely
 const getStoredProducts = () => {
     try {
         const stored = localStorage.getItem('huzur_custom_products');
@@ -163,12 +163,12 @@ const getStoredProducts = () => {
     return DEFAULT_PRODUCTS;
 };
 
-// Helper to save local products
+// Helper to save local products safely
 const saveStoredProducts = (products) => {
     try {
         localStorage.setItem('huzur_custom_products', JSON.stringify(products));
     } catch (e) {
-        console.error('Error saving products:', e);
+        console.warn('Storage quota warning, keeping active in memory:', e);
     }
 };
 
@@ -190,6 +190,45 @@ const slugify = (text) => {
         .replace(/[^a-z0-9\s-]/g, '')
         .trim()
         .replace(/\s+/g, '-');
+};
+
+// Helper: Compress/Resize Image to lightweight format (<50KB)
+const compressImage = (file, maxWidth = 600, maxHeight = 600, quality = 0.75) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width = Math.round((width * maxHeight) / height);
+                        height = maxHeight;
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                resolve(compressedDataUrl);
+            };
+            img.onerror = (err) => reject(err);
+        };
+        reader.onerror = (err) => reject(err);
+    });
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -527,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Render Initial UI
+    // Render Initial UI immediately from cache/defaults
     if (collectionGrid) renderProductsToContainer(collectionGrid, 'all');
     if (catalogProductsGrid) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -551,30 +590,33 @@ document.addEventListener('DOMContentLoaded', () => {
         db.collection("products").onSnapshot((snapshot) => {
             if (snapshot.empty) {
                 console.log("Firestore collection is empty, automatically seeding default products...");
-                // Seed initial 6 products to Firestore
+                saveStoredProducts(DEFAULT_PRODUCTS);
                 DEFAULT_PRODUCTS.forEach((item) => {
                     db.collection("products").doc(item.id).set({
                         ...item,
                         createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
+                    }).catch(e => console.warn("Firestore seed note:", e));
                 });
+                if (collectionGrid) renderProductsToContainer(collectionGrid, currentCategoryFilter);
+                if (catalogProductsGrid) renderProductsToContainer(catalogProductsGrid, currentCategoryFilter, currentSearchTerm);
+                renderAdminPanelProducts();
             } else {
                 const cloudProducts = [];
                 snapshot.forEach((doc) => {
                     cloudProducts.push({ id: doc.id, ...doc.data() });
                 });
 
-                // Sort items by order or creation
-                cloudProducts.sort((a, b) => (a.order || 99) - (b.order || 99));
-
-                // Save to local storage cache & re-render
-                saveStoredProducts(cloudProducts);
-                if (collectionGrid) renderProductsToContainer(collectionGrid, currentCategoryFilter);
-                if (catalogProductsGrid) renderProductsToContainer(catalogProductsGrid, currentCategoryFilter, currentSearchTerm);
-                renderAdminPanelProducts();
+                if (cloudProducts.length > 0) {
+                    cloudProducts.sort((a, b) => (a.order || 99) - (b.order || 99));
+                    saveStoredProducts(cloudProducts);
+                    if (collectionGrid) renderProductsToContainer(collectionGrid, currentCategoryFilter);
+                    if (catalogProductsGrid) renderProductsToContainer(catalogProductsGrid, currentCategoryFilter, currentSearchTerm);
+                    renderAdminPanelProducts();
+                }
             }
         }, (error) => {
             console.warn("Firestore realtime sync offline or permission issue, fallback to localStorage:", error.message);
+            renderAdminPanelProducts();
         });
     }
 
@@ -922,7 +964,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const pageLink = prod.pageUrl || `urun.html?id=${prod.id}`;
 
             item.innerHTML = `
-                <img src="${prod.image}" alt="${prod.title}" class="admin-prod-thumb">
+                <img src="${prod.image}" alt="${prod.title}" class="admin-prod-thumb" onerror="this.src='./foto_1.png'">
                 <div class="admin-prod-details">
                     <h5 class="admin-prod-title">${prod.title}</h5>
                     <div class="admin-prod-price">${prod.price} <span class="admin-prod-cat-tag">(${prod.categoryName || prod.category})</span></div>
@@ -975,19 +1017,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Custom File Upload
+    // Custom File Upload with Auto Compression
     if (prodImageFileInput) {
-        prodImageFileInput.addEventListener('change', (e) => {
+        prodImageFileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const base64Src = event.target.result;
-                    if (prodImageSrcInput) prodImageSrcInput.value = base64Src;
-                    if (imagePreview) imagePreview.src = base64Src;
+                try {
+                    const compressedBase64 = await compressImage(file, 600, 600, 0.75);
+                    if (prodImageSrcInput) prodImageSrcInput.value = compressedBase64;
+                    if (imagePreview) imagePreview.src = compressedBase64;
                     presetThumbs.forEach(t => t.classList.remove('active'));
-                };
-                reader.readAsDataURL(file);
+                } catch (err) {
+                    console.error("Görsel sıkıştırma hatası:", err);
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const base64Src = event.target.result;
+                        if (prodImageSrcInput) prodImageSrcInput.value = base64Src;
+                        if (imagePreview) imagePreview.src = base64Src;
+                    };
+                    reader.readAsDataURL(file);
+                }
             }
         });
     }
@@ -1123,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             generateSitemapXML();
 
             if (adminProductFormContainer) adminProductFormContainer.classList.add('hidden');
-            alert('Ürün başarıyla Firebase Bulut Veritabanına kaydedildi ve canlı yayına alındı! ✨');
+            alert('Ürün başarıyla kaydedildi ve vitrinde yayınlandı! ✨');
         });
     }
 
@@ -1132,12 +1181,13 @@ document.addEventListener('DOMContentLoaded', () => {
         btnResetProducts.addEventListener('click', () => {
             if (confirm('Tüm ürünleri varsayılan orijinal ürünlere sıfırlamak istediğinize emin misiniz?')) {
                 localStorage.removeItem('huzur_custom_products');
+                saveStoredProducts(DEFAULT_PRODUCTS);
                 if (db) {
                     DEFAULT_PRODUCTS.forEach((item) => {
                         db.collection("products").doc(item.id).set({
                             ...item,
                             createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        });
+                        }).catch(e => console.warn(e));
                     });
                 }
                 renderAdminPanelProducts();
