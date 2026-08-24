@@ -1578,3 +1578,114 @@ section, .about, .collection, .features-section, .page-header, .page-content-wra
     box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
 }
 
+/* ==========================================================================
+   Preloader / Loading Screen (Cream BG + Rotating White Favicon + Fade Text)
+   ========================================================================== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg-alt); /* Sitede kullanılan krem rengi #F7F3EE */
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s ease;
+}
+
+.preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.preloader-logo-wrap {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+    position: relative;
+}
+
+.preloader-icon {
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    /* Faviconu beyaz yapma ve hafif zarif gölge */
+    filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(142, 115, 91, 0.2));
+    animation: preloaderRotate 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes preloaderRotate {
+    0% {
+        transform: rotate(0deg) scale(0.96);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.04);
+    }
+    100% {
+        transform: rotate(360deg) scale(0.96);
+    }
+}
+
+.preloader-title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-rattan-deep);
+    letter-spacing: 2px;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: preloaderFadeIn 0.5s ease forwards 0.15s;
+}
+
+.preloader-line {
+    width: 36px;
+    height: 2px;
+    background: var(--color-rattan);
+    margin-top: 0.7rem;
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    animation: preloaderLineGrow 0.5s ease forwards 0.25s;
+}
+
+@keyframes preloaderFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes preloaderLineGrow {
+    to {
+        opacity: 0.85;
+        transform: scaleX(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .preloader-icon {
+        width: 56px;
+        height: 56px;
+    }
+    .preloader-title {
+        font-size: 1.45rem;
+        letter-spacing: 1.5px;
+    }
+}
+
+

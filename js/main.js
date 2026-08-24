@@ -2,6 +2,24 @@
  * Huzur Atölyem - Core & Hero Slider Interactions
  */
 
+// =========================================================================
+// 0. Preloader (Krem Arka Plan + Dönen Beyaz Favicon + Fade Yazı)
+// =========================================================================
+const hidePreloader = () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader && !preloader.classList.contains('fade-out')) {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            if (preloader.parentNode) preloader.remove();
+        }, 380);
+    }
+};
+
+window.addEventListener('load', () => {
+    setTimeout(hidePreloader, 500);
+});
+setTimeout(hidePreloader, 1000);
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // =========================================================================
