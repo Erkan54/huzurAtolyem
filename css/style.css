@@ -1339,7 +1339,7 @@ section, .about, .collection, .features-section, .page-header, .page-content-wra
     background: linear-gradient(180deg, #F7F3EE 0%, #FCFBF9 100%);
     text-align: center;
     position: relative;
-    border-bottom: 1px solid rgba(212, 184, 149, 0.2);
+    border-bottom: none;
 }
 
 .page-header-content {
@@ -2927,6 +2927,7 @@ html.no-preloader .preloader {
     background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg-main) 100%);
     padding: calc(var(--navbar-height) + 3rem) 6% 3.5rem;
     text-align: center;
+    border-bottom: none !important;
 }
 
 .catalog-container {
