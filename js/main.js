@@ -3,7 +3,7 @@
  */
 
 // =========================================================================
-// 0. Preloader (Krem Arka Plan + Dönen Beyaz Favicon + Fade Yazı)
+// 0. Preloader (Sıcak Krem Arka Plan + Dönen Beyaz Favicon + Fade Yazı - 1.5s)
 // =========================================================================
 const hidePreloader = () => {
     const preloader = document.getElementById('preloader');
@@ -11,14 +11,14 @@ const hidePreloader = () => {
         preloader.classList.add('fade-out');
         setTimeout(() => {
             if (preloader.parentNode) preloader.remove();
-        }, 380);
+        }, 450);
     }
 };
 
 window.addEventListener('load', () => {
-    setTimeout(hidePreloader, 500);
+    setTimeout(hidePreloader, 1500);
 });
-setTimeout(hidePreloader, 1000);
+setTimeout(hidePreloader, 2200);
 
 document.addEventListener('DOMContentLoaded', () => {
     

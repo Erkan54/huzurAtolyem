@@ -40,6 +40,19 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Preloader Sadece İlk Girişte ve Sayfa Yenilemede (F5) Çalışsın Scripti -->
+    <script>
+        (function() {
+            var isReload = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0] && performance.getEntriesByType('navigation')[0].type === 'reload') || (performance.navigation && performance.navigation.type === 1);
+            var isInitial = !sessionStorage.getItem('huzur_visited');
+            if (!isInitial && !isReload) {
+                document.documentElement.classList.add('no-preloader');
+            } else {
+                sessionStorage.setItem('huzur_visited', 'true');
+            }
+        })();
+    </script>
 </head>
 <body class="about-page">
 
