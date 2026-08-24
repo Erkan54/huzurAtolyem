@@ -1061,6 +1061,24 @@ footer p {
 }
 
 @media (max-width: 768px) {
+    .logo-wrapper {
+        gap: 0.65rem;
+    }
+
+    .logo-img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+    }
+
+    .logo span {
+        font-size: 0.6rem;
+        letter-spacing: 2.2px;
+    }
+
     .hamburger {
         display: flex;
     }
