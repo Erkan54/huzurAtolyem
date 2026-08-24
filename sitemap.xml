@@ -1,83 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-    
-    <!-- 1. Ana Sayfa (Sakarya El Emeği Doğal Rattan & Bohem Ürünleri) -->
+
+    <!-- Ana Sayfa -->
     <url>
         <loc>https://huzuratolyem.com/</loc>
         <lastmod>2026-08-24</lastmod>
-        <changefreq>daily</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>1.0</priority>
-        <image:image>
-            <image:loc>https://huzuratolyem.com/foto_4.png</image:loc>
-            <image:title>20 cm Bohem El Yapımı Rattan Duvar Süsü Sakarya</image:title>
-            <image:caption>Sakarya'dan doğal rattan el örgüsü çiçek duvar dekoru</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://huzuratolyem.com/foto_1.png</image:loc>
-            <image:title>Sakarya El Yapımı Rattan Saç Tokası &amp; Aksesuar</image:title>
-            <image:caption>Doğal el emeği rattan toka ve saç aksesuarları</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://huzuratolyem.com/foto_5.png</image:loc>
-            <image:title>25 cm Doğal Bohem Rattan Duvar Süsü</image:title>
-            <image:caption>El emeği sıcak ev dekorasyonu rattan süsler</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://huzuratolyem.com/foto_6.png</image:loc>
-            <image:title>38 cm Büyük Boy Bohem Rattan Duvar Dekoru</image:title>
-            <image:caption>Sakarya el yapımı özel tasarım dev boy rattan duvar süsü</image:caption>
-        </image:image>
     </url>
 
-    <!-- 2. Tüm Ürünler Kataloğu & İndeks Sayfası -->
+    <!-- Tüm Ürünler Koleksiyonu -->
     <url>
         <loc>https://huzuratolyem.com/urunler.html</loc>
         <lastmod>2026-08-24</lastmod>
-        <changefreq>daily</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
 
-    <!-- 3. Ürün: 20 cm Rattan Duvar Süsü -->
+    <!-- Biz Kimiz -->
     <url>
-        <loc>https://huzuratolyem.com/urun-20-cm-rattan-duvar-susu.html</loc>
+        <loc>https://huzuratolyem.com/biz-kimiz.html</loc>
         <lastmod>2026-08-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://huzuratolyem.com/foto_4.png</image:loc>
-            <image:title>20 cm Bohem Rattan Duvar Süsü</image:title>
-            <image:caption>El yapımı doğal rattan çiçek formunda duvar süsü</image:caption>
-        </image:image>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 
-    <!-- 4. Ürün: 25 cm Rattan Duvar Süsü -->
-    <url>
-        <loc>https://huzuratolyem.com/urun-25-cm-rattan-duvar-susu.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://huzuratolyem.com/foto_5.png</image:loc>
-            <image:title>25 cm Bohem Rattan Duvar Süsü</image:title>
-            <image:caption>Çok satan salon ve yatak odası bohem rattan süs</image:caption>
-        </image:image>
-    </url>
-
-    <!-- 5. Ürün: 38 cm Rattan Duvar Süsü -->
-    <url>
-        <loc>https://huzuratolyem.com/urun-38-cm-rattan-duvar-susu.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://huzuratolyem.com/foto_6.png</image:loc>
-            <image:title>38 cm Büyük Boy Bohem Rattan Duvar Süsü</image:title>
-            <image:caption>Dev boy gösterişli bohem rattan duvar dekoru</image:caption>
-        </image:image>
-    </url>
-
-    <!-- 6. Ürün: El Yapımı Rattan Saç Tokası & Aksesuar -->
+    <!-- Ürün Sayfaları -->
     <url>
         <loc>https://huzuratolyem.com/urun-rattan-sac-tokasi.html</loc>
         <lastmod>2026-08-24</lastmod>
@@ -85,47 +34,63 @@
         <priority>0.9</priority>
         <image:image>
             <image:loc>https://huzuratolyem.com/foto_1.png</image:loc>
-            <image:title>El Yapımı Rattan Saç Tokası &amp; Aksesuar</image:title>
-            <image:caption>Zarif boncuk detaylı el emeği rattan saç tokası</image:caption>
+            <image:title>El Yapımı Rattan Saç Tokası</image:title>
+            <image:caption>Zarif boncuk detaylı, %100 doğal el yapımı saç aksesuarı.</image:caption>
         </image:image>
     </url>
-
-    <!-- 7. Ürün: Özel Tasarım Rölyef Çerçeve -->
+    <url>
+        <loc>https://huzuratolyem.com/urun-20-cm-rattan-duvar-susu.html</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://huzuratolyem.com/foto_4.png</image:loc>
+            <image:title>20 cm Rattan Duvar Süsü</image:title>
+            <image:caption>Doğal el örgüsü, zarif çiçek formunda duvar dekoru.</image:caption>
+        </image:image>
+    </url>
     <url>
         <loc>https://huzuratolyem.com/urun-ozel-tasarim-rolyef-cerceve.html</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.85</priority>
+        <priority>0.9</priority>
         <image:image>
             <image:loc>https://huzuratolyem.com/foto_2.png</image:loc>
-            <image:title>Özel Tasarım 3D Rölyef Tablo</image:title>
-            <image:caption>3 boyutlu el işçiliği mutfak ve salon tablosu</image:caption>
+            <image:title>Özel Tasarım Rölyef Çerçeve</image:title>
+            <image:caption>Mutfak ve yemek alanları için 3 boyutlu el işçiliği tablo.</image:caption>
         </image:image>
     </url>
-
-    <!-- 8. Ürün: El Emeği Vav Hat Tablo -->
+    <url>
+        <loc>https://huzuratolyem.com/urun-25-cm-rattan-duvar-susu.html</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://huzuratolyem.com/foto_5.png</image:loc>
+            <image:title>25 cm Rattan Duvar Süsü</image:title>
+            <image:caption>Salon ve yatak odalarına doğal ve sıcak bir dokunuş.</image:caption>
+        </image:image>
+    </url>
     <url>
         <loc>https://huzuratolyem.com/urun-el-emegi-vav-hat-tablo.html</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.85</priority>
+        <priority>0.9</priority>
         <image:image>
             <image:loc>https://huzuratolyem.com/foto_3.png</image:loc>
-            <image:title>El Emeği Vav Hat Sanatı Tablo</image:title>
-            <image:caption>Geleneksel çiçek bezemeli çerçeveli hat tablosu</image:caption>
+            <image:title>El Emeği Vav Hat Tablo</image:title>
+            <image:caption>Geleneksel Vav motifi ve çiçek bezemeli çerçeveli eser.</image:caption>
         </image:image>
     </url>
-
-    <!-- 9. Biz Kimiz Sayfası (Huzur Atölyem Hikayesi & Değerler) -->
     <url>
-        <loc>https://huzuratolyem.com/biz-kimiz.html</loc>
+        <loc>https://huzuratolyem.com/urun-38-cm-rattan-duvar-susu.html</loc>
         <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
         <image:image>
-            <image:loc>https://huzuratolyem.com/foto_1.png</image:loc>
-            <image:title>Huzur Atölyem Sakarya Rattan Hikayesi</image:title>
-            <image:caption>Sakarya ev ortamında tamamen el emeği üretilen doğal rattan tasarımlar</image:caption>
+            <image:loc>https://huzuratolyem.com/foto_6.png</image:loc>
+            <image:title>38 cm Rattan Duvar Süsü</image:title>
+            <image:caption>Geniş duvarlar ve ana odak noktaları için dev boy zarafet.</image:caption>
         </image:image>
     </url>
 
