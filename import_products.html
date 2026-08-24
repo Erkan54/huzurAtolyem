@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Firestore Ürün Yükleme Aracı - Huzur Atölyem</title>
+    <title>Firebase Firestore Ürün Yükleme & Eşitleme Aracı - Huzur Atölyem</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -17,26 +17,26 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 30px 20px;
         }
         .import-card {
             background: #FFFFFF;
             padding: 2.5rem;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(142, 115, 91, 0.12);
+            border-radius: 28px;
+            box-shadow: 0 15px 50px rgba(142, 115, 91, 0.15);
             border: 1px solid rgba(212, 184, 149, 0.35);
-            max-width: 580px;
+            max-width: 720px;
             width: 100%;
             text-align: center;
         }
         .import-logo {
-            width: 72px;
-            height: 72px;
+            width: 76px;
+            height: 76px;
             margin-bottom: 1rem;
         }
         h1 {
             color: #5A4738;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             margin-bottom: 0.5rem;
         }
         p {
@@ -49,37 +49,72 @@
             background: #25D366;
             color: #FFFFFF;
             font-weight: 700;
-            font-size: 1rem;
-            padding: 0.9rem 1.8rem;
-            border-radius: 12px;
+            font-size: 1.05rem;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
             transition: all 0.3s ease;
         }
         .btn-upload-all:hover {
             background: #1EBE5D;
             transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+        }
+        .product-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        .preview-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 12px;
+            background: #FCFBF9;
+            border: 1px solid rgba(212, 184, 149, 0.3);
+        }
+        .preview-item img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .preview-item h5 {
+            margin: 0 0 2px;
+            font-size: 0.85rem;
+            color: #5A4738;
+        }
+        .preview-item span {
+            font-size: 0.78rem;
+            color: #8E735B;
+            font-weight: 600;
         }
         .log-box {
             margin-top: 1.5rem;
             background: #2A241F;
             color: #D4B895;
-            padding: 1rem;
-            border-radius: 12px;
+            padding: 1.2rem;
+            border-radius: 14px;
             text-align: left;
             font-family: monospace;
-            font-size: 0.85rem;
-            max-height: 200px;
+            font-size: 0.88rem;
+            max-height: 220px;
             overflow-y: auto;
             display: none;
+            line-height: 1.6;
         }
         .btn-back-home {
             display: inline-block;
             margin-top: 1.5rem;
             color: #8E735B;
             text-decoration: underline;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -89,8 +124,54 @@
         <img src="favicon.png" alt="Huzur Atölyem" class="import-logo">
         <h1>Firebase Firestore Veritabanı Yükleyici</h1>
         <p>
-            Mevcut 6 orijinal rattan ve bohem ürününü Firebase Firestore bulut veritabanınıza (<strong>huzuratolyem-rattan</strong>) aktarmak için aşağıdaki butona tıklayın.
+            Aşağıdaki 6 orijinal ürünü Firebase Firestore bulut veritabanınıza (<strong>huzuratolyem-rattan</strong>) aktarmak ve siteyle eşitlemek için butona tıklayın.
         </p>
+
+        <!-- Product Preview Grid -->
+        <div class="product-preview-grid">
+            <div class="preview-item">
+                <img src="./foto_1.png" alt="Toka">
+                <div>
+                    <h5>Rattan Saç Tokası</h5>
+                    <span>Fiyat Sorunuz</span>
+                </div>
+            </div>
+            <div class="preview-item">
+                <img src="./foto_4.png" alt="20 cm">
+                <div>
+                    <h5>20 cm Duvar Süsü</h5>
+                    <span>150 TL</span>
+                </div>
+            </div>
+            <div class="preview-item">
+                <img src="./foto_2.png" alt="Rölyef">
+                <div>
+                    <h5>3D Rölyef Çerçeve</h5>
+                    <span>Fiyat Sorunuz</span>
+                </div>
+            </div>
+            <div class="preview-item">
+                <img src="./foto_5.png" alt="25 cm">
+                <div>
+                    <h5>25 cm Duvar Süsü</h5>
+                    <span>200 TL</span>
+                </div>
+            </div>
+            <div class="preview-item">
+                <img src="./foto_3.png" alt="Vav Hat">
+                <div>
+                    <h5>Vav Hat Tablo</h5>
+                    <span>Fiyat Sorunuz</span>
+                </div>
+            </div>
+            <div class="preview-item">
+                <img src="./foto_6.png" alt="38 cm">
+                <div>
+                    <h5>38 cm Duvar Süsü</h5>
+                    <span>350 TL</span>
+                </div>
+            </div>
+        </div>
 
         <button type="button" class="btn-upload-all" id="btnStartImport">
             🚀 6 Orijinal Ürünü Firestore'a Yükle
@@ -99,7 +180,7 @@
         <div id="logBox" class="log-box"></div>
 
         <div>
-            <a href="index.html" class="btn-back-home">← Ana Sayfaya Dön</a>
+            <a href="index.html" class="btn-back-home">← Ana Sayfaya Dön ve Paneli Aç</a>
         </div>
     </div>
 
@@ -114,7 +195,9 @@
             measurementId: "G-KRBH1J29X7"
         };
 
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const db = firebase.firestore();
 
         const DEFAULT_PRODUCTS = [
@@ -224,19 +307,24 @@
         };
 
         document.getElementById('btnStartImport').addEventListener('click', async () => {
-            appendLog('Firestore bağlantısı başlatılıyor...');
+            appendLog('Firestore bulut veritabanına bağlanılıyor...');
             try {
+                // Also reset local storage to original
+                localStorage.setItem('huzur_custom_products', JSON.stringify(DEFAULT_PRODUCTS));
+                
                 for (const item of DEFAULT_PRODUCTS) {
                     await db.collection("products").doc(item.id).set({
                         ...item,
                         createdAt: firebase.firestore.FieldValue.serverTimestamp()
                     });
-                    appendLog(`✓ Başarıyla yüklendi: ${item.title} (${item.id})`);
+                    appendLog(`✓ Yüklendi: ${item.title} (${item.price})`);
                 }
-                appendLog('🎉 Tebrikler! Tüm ürünler Firestore veritabanına kaydedildi!');
+                appendLog('🎉 TEBRİKLER! 6 ürünün tümü Firebase Firestore veritabanına kaydedildi ve yerel önbellek eşitlendi!');
+                alert('Tüm ürünler başarıyla Firebase veritabanına yüklendi! Ana sayfaya dönebilirsiniz. ✨');
             } catch (err) {
                 appendLog(`❌ Hata: ${err.message}`);
                 console.error(err);
+                alert('Yükleme sırasında hata oluştu: ' + err.message);
             }
         });
     </script>
